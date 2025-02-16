@@ -1,12 +1,16 @@
+import { Provider } from "react-redux";
 import Body from "./Components/Body";
 import Navbar from "./Components/Navbar";
-import Sidebar from "./Components/Sidebar";
+import store from "../store/store";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Body />
+      {/* we are passing store to our app */}
+      <Provider store={store}>
+        <Navbar />
+        <Body />
+      </Provider>
     </>
   );
 }

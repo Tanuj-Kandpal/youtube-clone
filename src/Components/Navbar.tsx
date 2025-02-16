@@ -1,15 +1,24 @@
 import { FaRegBell } from "react-icons/fa";
 import { IoLogoChrome } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { hamburgerModal } from "../../store/hamburgerSlice";
 
 function Navbar() {
+  const dispatch = useDispatch();
+  function handleHamburger() {
+    dispatch(hamburgerModal());
+  }
+
   return (
     <>
       <div className="m-7 flex text-[18px] justify-between pl-3 pr-3 items-center">
         {/* Left bar */}
         <div className="flex gap-3 items-center">
           <div>
-            <RxHamburgerMenu />
+            <button className="cursor-pointer" onClick={handleHamburger}>
+              <RxHamburgerMenu />
+            </button>
           </div>
           <div className="flex gap-1 items-center">
             <img

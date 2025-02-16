@@ -12,6 +12,7 @@ import {
 } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
 import Sidebar from "./Sidebar";
+import VideoCard from "./VideoCard";
 function Body() {
   return (
     <div className="m-11 h-screen flex">
@@ -37,7 +38,7 @@ function Body() {
       </div>
       {/* Videos Section */}
       <div className="h-4/5">
-        <h1>Videos</h1>
+        <VideoCard />
       </div>
     </div>
   );
