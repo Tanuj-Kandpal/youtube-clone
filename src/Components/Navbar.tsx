@@ -39,7 +39,7 @@ function Navbar() {
         </div>
         {/* Right Bar */}
         <div className="flex gap-6">
-          <div className="]">
+          <div className="">
             <FaRegBell />
           </div>
           <div>
