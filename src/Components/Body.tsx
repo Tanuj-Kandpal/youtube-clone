@@ -17,7 +17,7 @@ function Body() {
   return (
     <div className="m-11 h-screen flex">
       {/* Left SideBar */}
-      <div className=" h-1/5 flex flex-col gap-6">
+      <div className=" h-1/5 flex flex-col gap-6 mr-12">
         <Sidebar icon={<MdHome />} title={"Home"}></Sidebar>
         <Sidebar icon={<SiYoutubeshorts />} title={"Shorts"}></Sidebar>
         <Sidebar icon={<MdSubscriptions />} title={"Subscription"}></Sidebar>
@@ -37,7 +37,7 @@ function Body() {
         <Sidebar icon={<IoGameController />} title={"Study iq"}></Sidebar>
       </div>
       {/* Videos Section */}
-      <div className="h-4/5">
+      <div className="flex gap-5 flex-wrap">
         <VideoCard />
       </div>
     </div>

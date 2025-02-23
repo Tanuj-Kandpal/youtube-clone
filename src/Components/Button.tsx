@@ -1,4 +1,4 @@
-const buttons = [
+const buttons: string[] = [
   "All",
   "Music",
   "Gaming",
@@ -7,6 +7,12 @@ const buttons = [
   "ComputerGaming",
   "Podcasts",
   "Mixes",
+  "Laptop",
+  "Computers",
+  "Live",
+  "Valorant",
+  "ComputerGaming",
+  "Podcasts",
 ];
 
 function Button() {

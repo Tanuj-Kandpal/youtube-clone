@@ -1,8 +1,8 @@
 import { FaRegBell } from "react-icons/fa";
-import { IoLogoChrome } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { hamburgerModal } from "../../store/hamburgerSlice";
+import { CgProfile } from "react-icons/cg";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function Navbar() {
             <FaRegBell />
           </div>
           <div>
-            <IoLogoChrome />
+            <CgProfile />
           </div>
         </div>
       </div>
