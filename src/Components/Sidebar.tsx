@@ -7,6 +7,7 @@ type props = {
   path?: string;
 };
 function Sidebar({ icon, title,path }: props) {
+  // @ts-ignore
   const isModelOpen = useSelector((store) => store.hamburger.isModelOpen);
   return isModelOpen ? (
     <div>

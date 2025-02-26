@@ -8,11 +8,11 @@ import { useSearchParams } from "react-router";
 function WatchPage() {
   const dispatch = useDispatch();
 
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
 
   const output = useApi(completeYoutubeUrl);
 
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState({});
   const currentVideoId = query.get("v");
   useEffect(
     function () {
