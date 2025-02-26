@@ -9,8 +9,11 @@ const hamburgerSlice = createSlice({
     hamburgerModal: function (state) {
       state.isModelOpen = !state.isModelOpen;
     },
+    hamburgerModalOff: function (state) {
+      state.isModelOpen = false;
+    },
   },
 });
 
 export default hamburgerSlice.reducer;
-export const { hamburgerModal } = hamburgerSlice.actions;
+export const { hamburgerModal, hamburgerModalOff } = hamburgerSlice.actions;

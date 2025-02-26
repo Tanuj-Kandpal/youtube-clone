@@ -3,6 +3,8 @@ import Body from "./Components/Body";
 import Navbar from "./Components/Navbar";
 import store from "../store/store";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import VideoCard from "./Components/VideoCard";
+import WatchPage from "./Pages/WatchPage";
 
 const AppRouter = createBrowserRouter([
   {
@@ -10,8 +12,12 @@ const AppRouter = createBrowserRouter([
     element: <Body />,
     children: [
       {
-        path: "",
-        element: "",
+        path: "/",
+        element: <VideoCard />,
+      },
+      {
+        path: "/Watch",
+        element: <WatchPage />,
       },
     ],
   },

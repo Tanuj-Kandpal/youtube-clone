@@ -1,8 +1,8 @@
+import { CgProfile } from "react-icons/cg";
 import { FaRegBell } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { hamburgerModal } from "../../store/hamburgerSlice";
-import { CgProfile } from "react-icons/cg";
 
 function Navbar() {
   const dispatch = useDispatch();

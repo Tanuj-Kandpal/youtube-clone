@@ -1,15 +1,19 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router";
 
 type props = {
   icon: React.ReactNode;
   title: string;
+  path?: string;
 };
-function Sidebar({ icon, title }: props) {
+function Sidebar({ icon, title,path }: props) {
   const isModelOpen = useSelector((store) => store.hamburger.isModelOpen);
   return isModelOpen ? (
-    <div className="flex gap-5 text-xl items-center">
-      <div>{icon}</div>
-      <div>{title}</div>
+    <div>
+      <Link className="flex gap-5 text-xl items-center" to={`${path}`}>
+        <div>{icon}</div>
+        <div>{title}</div>
+      </Link>
     </div>
   ) : (
     ""

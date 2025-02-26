@@ -5,20 +5,20 @@ const buttons: string[] = [
   "Live",
   "Valorant",
   "ComputerGaming",
-  "Podcasts",
+  "Radio",
   "Mixes",
   "Laptop",
-  "Computers",
-  "Live",
-  "Valorant",
-  "ComputerGaming",
+  "Spotify",
+  "Boadcart",
   "Podcasts",
+  "Computers",
+  "LoFi",
 ];
 
 function Button() {
   return buttons.map(function (curr) {
     return (
-      <div className="">
+      <div key={curr} className="">
         <button className="bg-[#F5F5F5] rounded px-3 ml-3 hover:bg-black hover:text-white cursor-pointer">
           {curr}
         </button>

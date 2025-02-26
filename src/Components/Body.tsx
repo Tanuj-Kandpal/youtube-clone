@@ -11,15 +11,19 @@ import {
   MdWatchLater,
 } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
+import { Outlet } from "react-router";
 import Sidebar from "./Sidebar";
-import VideoCard from "./VideoCard";
 function Body() {
   return (
     <div className="m-11 h-screen flex">
       {/* Left SideBar */}
       <div className=" h-1/5 flex flex-col gap-6 mr-12">
-        <Sidebar icon={<MdHome />} title={"Home"}></Sidebar>
-        <Sidebar icon={<SiYoutubeshorts />} title={"Shorts"}></Sidebar>
+        <Sidebar icon={<MdHome />} title={"Home"} path="/"></Sidebar>
+        <Sidebar
+          icon={<SiYoutubeshorts />}
+          title={"Shorts"}
+          path="/Shorts"
+        ></Sidebar>
         <Sidebar icon={<MdSubscriptions />} title={"Subscription"}></Sidebar>
         <Sidebar icon={<FaHistory />} title={"History"}></Sidebar>
         <Sidebar icon={<MdPlaylistPlay />} title={"Playlists"}></Sidebar>
@@ -38,7 +42,9 @@ function Body() {
       </div>
       {/* Videos Section */}
       <div className="flex gap-5 flex-wrap">
-        <VideoCard />
+        {/* This is conrolled via child component */}
+        <Outlet />
+        {/* <VideoCard /> */}
       </div>
     </div>
   );
