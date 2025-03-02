@@ -1,16 +1,18 @@
 import { CgProfile } from "react-icons/cg";
 import { FaRegBell } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { hamburgerModal } from "../../store/hamburgerSlice";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { youtubeSearchEndpoint } from "../../Helpers/helpers";
+import { cacheResults } from "../../store/cacheSlice";
 
 function Navbar() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState([]);
   const dispatch = useDispatch();
+  const cacheSelector = useSelector((store) => store.cache);
 
   function handleHamburger() {
     dispatch(hamburgerModal());
@@ -20,16 +22,25 @@ function Navbar() {
     const data = await fetch(`${youtubeSearchEndpoint}${input}`);
     const value = await data.json();
     setResponse(value[1]);
+    dispatch(
+      cacheResults({
+        [input]: value[1],
+      })
+    );
   }
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
   }
 
   useEffect(
     function () {
       const timer = setTimeout(function () {
-        getApiResponse();
+        if (cacheSelector[input]) {
+          setResponse[cacheSelector];
+        } else {
+          getApiResponse();
+        }
       }, 200);
       return () => {
         return clearTimeout(timer);

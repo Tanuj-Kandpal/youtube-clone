@@ -9,7 +9,7 @@ const buttons: string[] = [
   "Mixes",
   "Laptop",
   "Spotify",
-  "Boadcart",
+  "Broadcast",
   "Podcasts",
   "Computers",
   "LoFi",
