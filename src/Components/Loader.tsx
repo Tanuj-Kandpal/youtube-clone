@@ -1,102 +1,26 @@
-export function Loader() {
+import React from "react";
+
+interface LoaderProps {
+  size?: "small" | "medium" | "large";
+  className?: string;
+}
+
+const Loader: React.FC<LoaderProps> = ({ size = "medium", className = "" }) => {
+  const sizeClasses = {
+    small: "w-6 h-6 border-2",
+    medium: "w-10 h-10 border-3",
+    large: "w-16 h-16 border-4",
+  };
+
   return (
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-        <circle
-          fill="#0368D9"
-          stroke="#0368D9"
-          stroke-width="6"
-          r="15"
-          cx="35"
-          cy="100"
-        >
-          <animate
-            attributeName="cx"
-            calcMode="spline"
-            dur="1.8"
-            values="35;165;165;35;35"
-            keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-            repeatCount="indefinite"
-            begin="0"
-          ></animate>
-        </circle>
-        <circle
-          fill="#0368D9"
-          stroke="#0368D9"
-          stroke-width="6"
-          opacity=".8"
-          r="15"
-          cx="35"
-          cy="100"
-        >
-          <animate
-            attributeName="cx"
-            calcMode="spline"
-            dur="1.8"
-            values="35;165;165;35;35"
-            keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-            repeatCount="indefinite"
-            begin="0.05"
-          ></animate>
-        </circle>
-        <circle
-          fill="#0368D9"
-          stroke="#0368D9"
-          stroke-width="6"
-          opacity=".6"
-          r="15"
-          cx="35"
-          cy="100"
-        >
-          <animate
-            attributeName="cx"
-            calcMode="spline"
-            dur="1.8"
-            values="35;165;165;35;35"
-            keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-            repeatCount="indefinite"
-            begin=".1"
-          ></animate>
-        </circle>
-        <circle
-          fill="#0368D9"
-          stroke="#0368D9"
-          stroke-width="6"
-          opacity=".4"
-          r="15"
-          cx="35"
-          cy="100"
-        >
-          <animate
-            attributeName="cx"
-            calcMode="spline"
-            dur="1.8"
-            values="35;165;165;35;35"
-            keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-            repeatCount="indefinite"
-            begin=".15"
-          ></animate>
-        </circle>
-        <circle
-          fill="#0368D9"
-          stroke="#0368D9"
-          stroke-width="6"
-          opacity=".2"
-          r="15"
-          cx="35"
-          cy="100"
-        >
-          <animate
-            attributeName="cx"
-            calcMode="spline"
-            dur="1.8"
-            values="35;165;165;35;35"
-            keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-            repeatCount="indefinite"
-            begin=".2"
-          ></animate>
-        </circle>
-      </svg>
+    <div className={`flex items-center justify-center ${className}`}>
+      <div
+        className={`${sizeClasses[size]} rounded-full border-blue-300 border-t-blue-600 animate-spin`}
+        role="status"
+        aria-label="Loading"
+      />
     </div>
   );
-}
+};
+
+export default Loader;

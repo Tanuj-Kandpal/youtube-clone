@@ -17,7 +17,7 @@ function Body() {
   return (
     <div className="m-11 h-screen flex">
       {/* Left SideBar */}
-      <div className=" h-1/5 flex flex-col gap-6 mr-12">
+      <div className=" h-1/5 flex flex-col gap-6 mr-12 cursor-pointer">
         <Sidebar icon={<MdHome />} title={"Home"} path="/"></Sidebar>
         <Sidebar
           icon={<SiYoutubeshorts />}
@@ -41,7 +41,7 @@ function Body() {
         <Sidebar icon={<IoGameController />} title={"Study iq"}></Sidebar>
       </div>
       {/* Videos Section */}
-      <div className="flex gap-5 flex-wrap">
+      <div>
         {/* This is conrolled via child component */}
         <Outlet />
         {/* <VideoCard /> */}

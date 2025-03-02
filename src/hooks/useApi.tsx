@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 function useApi(api: string) {
-  const [data, setData] = useState({
-    items: [{
-      id: "",
-      snippet:{
-        channelId: "",
-        title: "",
-        thumbnails: {
-          medium: {
-            url:"",
+  const [data, setData] = useState([
+    {
+      items: {
+        id: "",
+        snippet: {
+          channelId: "",
+          title: "",
+          thumbnails: {
+            medium: {
+              url: "",
+            },
           },
+          channelTitle: "",
         },
-        channelTitle:""
       },
-    }],
-  });
+    },
+  ]);
 
   async function fetching() {
     try {
