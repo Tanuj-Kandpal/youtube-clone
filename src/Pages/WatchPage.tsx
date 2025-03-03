@@ -6,6 +6,8 @@ import { completeYoutubeUrl } from "../../Helpers/helpers";
 import { useSearchParams } from "react-router";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import Loader from "../Components/Loader";
+import Comment from "../Components/Comment";
+import { DummyComments } from './../../Helpers/DummyComments';
 
 function WatchPage() {
   const dispatch = useDispatch();
@@ -64,6 +66,7 @@ function WatchPage() {
             );
           }
         })}
+        <Comment comments={DummyComments} />
       </>
     );
   } else {

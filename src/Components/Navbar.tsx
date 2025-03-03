@@ -12,6 +12,7 @@ function Navbar() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState([]);
   const dispatch = useDispatch();
+  const [showList, setShowList] = useState(false);
   const cacheSelector = useSelector((store) => store.cache);
 
   function handleHamburger() {
@@ -69,28 +70,41 @@ function Navbar() {
           </div>
         </div>
         {/* Middle bar */}
-        <div className="">
+        <div>
           <input
             type="search"
-            className="border-1 text-center rounded-xl w-xl outline-none"
+            className={`border-1 text-center rounded-xl w-xl outline-none`}
             placeholder="Search"
             onChange={handleChange}
+            onFocus={function () {
+              setShowList(true);
+            }}
+            onBlur={function () {
+              setShowList(false);
+            }}
             value={input}
           />
-          <div className="fixed bg-white w-[35rem] py-3 shadow-2xl px-5 cursor-pointer">
-            <ul>
-              {response.map(function (currValue) {
-                return (
-                  <li key={currValue}>
-                    <div className="flex items-center justify-start gap-2 mb-2">
-                      <IoSearch />
-                      {currValue}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+
+          {showList && (
+            <div
+              className={`bg-white fixed w-[35rem] py-3 shadow-2xl px-5 cursor-pointer`}
+            >
+              <ul>
+                {response.map(function (currValue) {
+                  return (
+                    <li key={currValue}>
+                      <div
+                        className={`flex items-center justify-start gap-2 mb-2`}
+                      >
+                        <IoSearch />
+                        {currValue}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
         </div>
         {/* Right Bar */}
         <div className="flex gap-6">

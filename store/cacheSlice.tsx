@@ -5,7 +5,10 @@ const cacheSlice = createSlice({
   initialState: {},
   reducers: {
     cacheResults: function (state, action) {
-      Object.assign(state, action.payload);
+      //* First approach
+      // Object.assign(state, action.payload);
+      //* Second Approach
+      return { ...state, ...action.payload };
     },
   },
 });
