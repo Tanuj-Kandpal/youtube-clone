@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { CommentType } from "../../Helpers/DummyComments";
 
 type commentProps = {
@@ -22,4 +23,4 @@ function Comment({ comments }: commentProps) {
   );
 }
 
-export default Comment;
+export default memo(Comment);
