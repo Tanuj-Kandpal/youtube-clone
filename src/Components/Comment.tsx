@@ -6,7 +6,7 @@ type commentProps = {
 };
 
 function Comment({ comments }: commentProps) {
-  //* With the help of recursion we are able to impelement infinite comments sections
+  //* With the help of recursion we are able to implement infinite comments sections
   return (
     <>
       {comments.map(function (comment) {

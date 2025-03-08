@@ -9,22 +9,21 @@ import Loader from "../Components/Loader";
 import Comment from "../Components/Comment";
 import { DummyComments } from "./../../Helpers/DummyComments";
 import LiveChat from "../Components/LiveChat";
-import { addChat } from "../../store/ChatSlice";
-import randomMessage from "./../../Helpers/DummyChat";
+import { addChat, liveChat } from "../../store/ChatSlice";
+import { getRandomMessage } from "./../../Helpers/DummyChat";
+import { Messages } from "../../Interfaces/Interfaces";
 
 function WatchPage() {
   const dispatch = useDispatch();
   const messages = useSelector((store) => store.chat);
-  console.log(messages);
-
   const [query] = useSearchParams();
-
   const output = useApi(completeYoutubeUrl);
-
   const [response, setResponse] = useState({});
+  const [input, setInput] = useState("");
   const currentVideoId = query.get("v");
+  console.log(input);
 
-  //* Since my value is not getting changed so it is okay to cache it to save some memorya and useing memo make my child component not to rerender even my parents renders
+  //* Since my value is not getting changed so it is okay to cache it to save some memory and using memo make my child component not to rerender even my parents renders
   const comments = useMemo(function () {
     return DummyComments;
   }, []);
@@ -45,18 +44,31 @@ function WatchPage() {
     [dispatch]
   );
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     dispatch(
-  //       addChat({
-  //         message: randomMessage.text,
-  //         author: randomMessage.author,
-  //       })
-  //     );
-  //   }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomMessage = getRandomMessage();
+      dispatch(
+        liveChat({
+          message: randomMessage.text,
+          author: randomMessage.author,
+        })
+      );
+    }, 11000);
+    return () => clearInterval(interval);
+  }, []);
 
-  //   return () => clearInterval(interval);
-  // }, []);
+  function handleAdd() {
+    dispatch(
+      addChat({
+        message: input,
+        author: "User",
+      })
+    );
+  }
+
+  function handleInput(e) {
+    return setInput(e.target.value);
+  }
 
   if (response?.items) {
     return (
@@ -64,7 +76,7 @@ function WatchPage() {
         <div className="flex w-[90vw] mr-7 overflow-hidden p-5 content-between">
           <div className="w-[90%]">
             <iframe
-              width="950"
+              width="990"
               height="450"
               src={`https://www.youtube.com/embed/${currentVideoId}`}
               title="YouTube video player"
@@ -94,12 +106,41 @@ function WatchPage() {
             })}
             <Comment comments={comments} />
           </div>
-          <div className="w-[40%] border-2 border-amber-700 h-[90vh overflow-y-scroll">
-            {messages.messages
-              ? messages.messages?.map(function (message) {
-                  return <LiveChat messages={message} />;
-                })
-              : ""}
+          <div className="w-[40%]">
+            <div className="flex h-[90vh] overflow-y-scroll overflow-x-hidden flex-col-reverse">
+              {messages.messages
+                ? messages.messages?.map(function (message: Messages) {
+                    return (
+                      <>
+                        <LiveChat
+                          message={message.message}
+                          author={message.author}
+                        />
+                      </>
+                    );
+                  })
+                : ""}
+            </div>
+            <div className="flex mt-2">
+              <label
+                className="pl-4 rounded-2xl inline-block w-full"
+                htmlFor=""
+              >
+                <input
+                  placeholder="chat...."
+                  className="inline-block w-full rounded-2xl"
+                  type="text"
+                  value={input}
+                  onChange={handleInput}
+                />
+              </label>
+              <button
+                className="bg-red-600 p-2 w-[80px] rounded ml-1"
+                onClick={handleAdd}
+              >
+                Add
+              </button>
+            </div>
           </div>
         </div>
       </>

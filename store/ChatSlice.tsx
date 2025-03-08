@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { offsetLiveChat } from "../Helpers/helpers";
 
 const ChatSlice = createSlice({
   name: "ChatSlice",
@@ -6,11 +7,15 @@ const ChatSlice = createSlice({
     messages: [],
   },
   reducers: {
+    liveChat: function (state, action) {
+      state.messages.splice(offsetLiveChat,1)
+      state.messages.unshift(action.payload);
+    },
     addChat: function (state, action) {
-      state.messages.push(action.payload);
+      state.messages.unshift(action.payload);
     },
   },
 });
 
-export const { addChat } = ChatSlice.actions;
+export const { liveChat, addChat } = ChatSlice.actions;
 export default ChatSlice.reducer;
