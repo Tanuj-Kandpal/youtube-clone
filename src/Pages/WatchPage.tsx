@@ -11,17 +11,17 @@ import { DummyComments } from "./../../Helpers/DummyComments";
 import LiveChat from "../Components/LiveChat";
 import { addChat, liveChat } from "../../store/ChatSlice";
 import { getRandomMessage } from "./../../Helpers/DummyChat";
-import { Messages } from "../../Interfaces/Interfaces";
+import { ApiOutputState, Messages } from "../../Interfaces/Interfaces";
+import { RootState } from "../../store/store";
 
 function WatchPage() {
   const dispatch = useDispatch();
-  const messages = useSelector((store) => store.chat);
+  const messages = useSelector((store: RootState) => store.chat);
   const [query] = useSearchParams();
   const output = useApi(completeYoutubeUrl);
-  const [response, setResponse] = useState({});
+  const [response, setResponse] = useState<ApiOutputState>({ items: [] });
   const [input, setInput] = useState("");
   const currentVideoId = query.get("v");
-  console.log(input);
 
   //* Since my value is not getting changed so it is okay to cache it to save some memory and using memo make my child component not to rerender even my parents renders
   const comments = useMemo(function () {
@@ -53,9 +53,9 @@ function WatchPage() {
           author: randomMessage.author,
         })
       );
-    }, 11000);
+    }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [dispatch]);
 
   function handleAdd() {
     dispatch(
@@ -66,11 +66,11 @@ function WatchPage() {
     );
   }
 
-  function handleInput(e) {
+  function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     return setInput(e.target.value);
   }
 
-  if (response?.items) {
+  if (response) {
     return (
       <>
         <div className="flex w-[90vw] mr-7 overflow-hidden p-5 content-between">
@@ -81,8 +81,7 @@ function WatchPage() {
               src={`https://www.youtube.com/embed/${currentVideoId}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              // referrerpolicy="strict-origin-when-cross-origin"
-              // allowfullscreen
+
             ></iframe>
             {response?.items?.map(function (curr) {
               if (curr.id === currentVideoId) {

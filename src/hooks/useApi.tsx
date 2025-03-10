@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 function useApi(api: string) {
-  const [data, setData] = useState([
-    {
-      items: {
-        id: "",
-        snippet: {
-          channelId: "",
-          title: "",
-          thumbnails: {
-            medium: {
-              url: "",
-            },
-          },
-          channelTitle: "",
-        },
-      },
-    },
-  ]);
+
+  type VideoItem = {
+    id?: string;
+    snippet?: {
+      channelId?: string;
+      title?: string;
+      thumbnails?: { medium?: { url?: string } };
+      channelTitle?: string;
+    };
+  };
+
+  type ApiOutputState = {
+    items: VideoItem[];
+  };
+  const [data, setData] = useState<ApiOutputState>({ items: [] });
+
 
   async function fetching() {
     try {
@@ -35,3 +34,5 @@ function useApi(api: string) {
 }
 
 export default useApi;
+
+

@@ -4,11 +4,12 @@ import useApi from "../hooks/useApi";
 import ButtonList from "./ButtonList";
 import Loader from "./Loader";
 import { useEffect, useState } from "react";
+import { ApiOutputState } from "../../Interfaces/Interfaces";
 
 function VideoCard() {
   const youtubeApi = youtubeEndpoint + youtubeApiKey;
 
-  const [apiOutput, setApiOutput] = useState({});
+  const [apiOutput, setApiOutput] = useState<ApiOutputState>({ items: [] });
 
   const result = useApi(youtubeApi);
 
@@ -19,7 +20,7 @@ function VideoCard() {
     [result]
   );
 
-  if (apiOutput.items) {
+  if (apiOutput) {
     return (
       <>
         <div className="flex gap-5 flex-wrap">

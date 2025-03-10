@@ -8,12 +8,21 @@ import { IoSearch } from "react-icons/io5";
 import { youtubeSearchEndpoint } from "../../Helpers/helpers";
 import { cacheResults } from "../../store/cacheSlice";
 
+interface CacheState {
+  [key: string]: any; // Allows dynamic string keys
+}
+
+interface RootState {
+  cache: CacheState;
+}
 function Navbar() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState([]);
   const dispatch = useDispatch();
   const [showList, setShowList] = useState(false);
-  const cacheSelector = useSelector((store) => store.cache);
+  const cacheSelector: CacheState = useSelector(
+    (store: RootState) => store.cache
+  );
 
   function handleHamburger() {
     dispatch(hamburgerModal());
@@ -38,7 +47,7 @@ function Navbar() {
     function () {
       const timer = setTimeout(function () {
         if (cacheSelector[input]) {
-          setResponse[cacheSelector];
+          setResponse(cacheSelector[input]); // Access cached response properly
         } else {
           getApiResponse();
         }

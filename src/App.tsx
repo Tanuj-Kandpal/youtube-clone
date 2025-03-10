@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import Body from "./Components/Body";
 import Navbar from "./Components/Navbar";
-import store from "../store/store";
+import { store } from "../store/store";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import VideoCard from "./Components/VideoCard";
 import WatchPage from "./Pages/WatchPage";

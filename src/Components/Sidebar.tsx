@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
+import { RootState } from "../../store/store";
 
 type props = {
   icon: React.ReactNode;
@@ -7,8 +8,9 @@ type props = {
   path?: string;
 };
 function Sidebar({ icon, title, path }: props) {
-  // @ts-ignore
-  const isModelOpen = useSelector((store) => store.hamburger.isModelOpen);
+  const isModelOpen = useSelector(
+    (store: RootState) => store.hamburger.isModelOpen
+  );
   return isModelOpen ? (
     <div>
       <Link className="flex gap-5 text-xl items-center" to={`${path}`}>
