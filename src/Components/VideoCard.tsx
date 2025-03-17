@@ -9,13 +9,29 @@ import { ApiOutputState } from "../../Interfaces/Interfaces";
 function VideoCard() {
   const youtubeApi = youtubeEndpoint + youtubeApiKey;
 
-  const [apiOutput, setApiOutput] = useState<ApiOutputState>({ items: [] });
+  const [apiOutput, setApiOutput] = useState<ApiOutputState>({ items: []});
 
   const result = useApi(youtubeApi);
 
   useEffect(
     function () {
-      setApiOutput(result);
+      if (result?.items) {
+        setApiOutput({
+          items: result.items.map(item => ({
+            id: item.id || '',
+            snippet: {
+              channelId: item.snippet?.channelId || '',
+              title: item.snippet?.title || '',
+              thumbnails: {
+                medium: {
+                  url: item.snippet?.thumbnails?.medium?.url || ''
+                }
+              },
+              channelTitle: item.snippet?.channelTitle || ''
+            }
+          }))
+        });
+      }
     },
     [result]
   );

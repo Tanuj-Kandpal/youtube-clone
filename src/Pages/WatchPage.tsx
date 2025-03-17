@@ -30,8 +30,23 @@ function WatchPage() {
 
   useEffect(
     function () {
-      if (output) {
-        setResponse(output);
+      if (output?.items) {
+        // Ensure output has valid items array before setting state
+        setResponse({
+          items: output.items.map(item => ({
+            id: item.id || '', // Ensure id is always a string
+            snippet: {
+              channelId: item.snippet?.channelId || '',
+              title: item.snippet?.title || '',
+              thumbnails: {
+                medium: {
+                  url: item.snippet?.thumbnails?.medium?.url || ''
+                }
+              },
+              channelTitle: item.snippet?.channelTitle || ''
+            }
+          }))
+        });
       }
     },
     [output]

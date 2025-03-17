@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 function useApi(api: string) {
-
   type VideoItem = {
     id?: string;
     snippet?: {
@@ -15,7 +14,6 @@ function useApi(api: string) {
     items: VideoItem[];
   };
   const [data, setData] = useState<ApiOutputState>({ items: [] });
-
 
   async function fetching() {
     try {
@@ -34,5 +32,3 @@ function useApi(api: string) {
 }
 
 export default useApi;
-
-

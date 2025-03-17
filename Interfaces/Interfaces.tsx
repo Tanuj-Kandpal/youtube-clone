@@ -6,26 +6,6 @@ export interface Messages {
   message: Message;
 }
 
-interface Item {
-  id: string;
-  snippet: {
-    channelId: string;
-    title: string;
-    thumbnails: {
-      medium: {
-        url: string;
-      };
-    };
-    channelTitle: string;
-  };
-}
-export type Items = Item[];
-
-export type ApiResponse = {
-  kind?: string;
-  etag?: string;
-  items?: Items;
-};
 
 export type VideoItem = {
   id: string;
@@ -40,23 +20,3 @@ export type VideoItem = {
 export type ApiOutputState = {
   items: VideoItem[];
 };
-
-// [
-//   {
-//     items: [
-//       {
-//         id: "",
-//         snippet: {
-//           channelId: "",
-//           title: "",
-//           thumbnails: {
-//             medium: {
-//               url: "",
-//             },
-//           },
-//           channelTitle: "",
-//         },
-//       },
-//     ],
-//   },
-// ];
