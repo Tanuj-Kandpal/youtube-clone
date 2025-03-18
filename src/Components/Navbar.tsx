@@ -72,7 +72,7 @@ function Navbar() {
           <div className="flex gap-1 items-center">
             <img
               className="h-10"
-              src="src/assets/youtubeicon.png"
+              src="../src/assets/youtubeicon.png"
               alt="Youtube Logo"
             />
             <span className="font-medium">YOUTUBE</span>
